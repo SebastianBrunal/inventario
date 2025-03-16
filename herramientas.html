@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Herramientas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Gestión de Herramientas</h1>
+
+    <!-- Botón para volver a Inventario -->
+    <nav>
+        <button onclick="window.location.href='index.html'">Ir a Gestión de Inventario</button>
+    </nav>
+
+    <!-- Formulario para agregar herramientas -->
+    <h2>Agregar Herramienta</h2>
+    <form id="herramientaForm">
+        <input type="hidden" id="herramientaId">
+        <input type="text" id="nombreHerramienta" placeholder="Nombre de la Herramienta" required>
+        <input type="number" id="cantidadHerramienta" placeholder="Cantidad" required>
+        <button type="submit">Agregar Herramienta</button>
+    </form>
+    <h2>Buscar Herramienta</h2>
+    <input type="text" id="buscarNombreHerramienta" placeholder="Nombre de la Herramienta">
+    <button onclick="buscarHerramientaPorNombre()">Buscar</button>
+    <!-- Tabla para listar herramientas -->
+    <h2>Lista de Herramientas</h2>
+    <table id="herramientasTabla">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="herramientas.js"></script>
+</body>
+</html>
