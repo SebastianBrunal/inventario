@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Gestión de Inventario</title>
+  
+</head>
+<body>
+  <h1>Gestión de Inventario</h1>
+  <nav>
+    <button onclick="window.location.href='herramientas.html'">Ir a Gestión de Herramientas</button>
+</nav>
+  <!-- Formulario para agregar/editar producto -->
+  <h2>Agregar Producto</h2>
+  <form id="productoForm">
+    <!-- Campo oculto para distinguir entre Agregar vs Editar -->
+    <input type="hidden" id="productoId">
+    <input type="text" id="codigo" placeholder="Código de Referencia" required>
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="text" id="descripcion" placeholder="Descripción" required>
+    <input type="number" id="cantidad" placeholder="Cantidad" required>
+    <input type="number" step="0.01" id="precio" placeholder="Precio" required>
+    <button type="submit" id="submitBtn">Agregar Producto</button>
+  </form>
+
+  <!-- Área para consultar producto por código -->
+  <h2>Consultar Producto</h2>
+  <input type="text" id="buscarCodigo" placeholder="Código de Referencia">
+  <button onclick="consultarProducto()">Consultar Producto</button>
+  <div id="resultado"></div>
+  <h2>Buscar Producto por Nombre</h2>
+  <input type="text" id="buscarNombre" placeholder="Ingrese el nombre">
+  <button onclick="buscarPorNombre()">Buscar</button>
+  
+  <!-- Tabla para listar productos -->
+  <h2>Lista de Productos</h2>
+  <table id="productosTabla">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Cantidad</th>
+        <th>Precio c/u</th>
+        <th>Precio Total</th>
+        <th>Fecha de Registro</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const codigoCorrecto = "3932"; // Define el código de acceso
+        let intentos = 3;
+
+        function solicitarCodigo() {
+            const codigoIngresado = prompt("Ingrese el código de acceso:");
+
+            if (codigoIngresado === codigoCorrecto) {
+                document.getElementById("contenido").style.display = "block"; // Muestra la página
+            } else {
+                intentos--;
+                if (intentos > 0) {
+                    alert(`Código incorrecto. Intentos restantes: ${intentos}`);
+                    solicitarCodigo();
+                } else {
+                    alert("Has excedido el número de intentos.");
+                    document.body.innerHTML = "<h2>Acceso denegado</h2>"; // Bloquea la página
+                }
+            }
+        }
+
+        solicitarCodigo();
+    });
+</script>
+
+</body>
+</html>
